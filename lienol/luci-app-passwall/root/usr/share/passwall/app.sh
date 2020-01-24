@@ -351,6 +351,10 @@ gen_start_config() {
 						local opts=$(config_n_get $node ss_plugin_v2ray_opts)
 						plugin_params="--plugin v2ray-plugin --plugin-opts $opts"
 					}
+					[ "$plugin" == "simple-obfs" ] && {
+						local opts=$(config_n_get $node ss_plugin_simple_obfs_opts)
+						plugin_params="--plugin obfs-local --plugin-opts $opts"
+					}
 				fi
 				$ss_bin -c $config_file -b 0.0.0.0 -u $plugin_params >/dev/null 2>&1 &
 			}
